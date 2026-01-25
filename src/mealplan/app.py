@@ -9,25 +9,35 @@ import uuid
 
 st.set_page_config(page_title="Vegetarischer Wochen-Ernährungsplan", layout="wide")
 
-# Custom styling for better UX
+# Custom styling for better UX - Green Theme
 st.markdown("""
 <style>
     .main-header {
         text-align: center;
-        color: #2ecc71;
+        color: #27ae60;
         margin-bottom: 30px;
+        font-size: 2.5em;
     }
     .info-box {
-        background-color: #f0f2f6;
+        background-color: #d5f4e6;
         padding: 20px;
         border-radius: 10px;
         margin: 15px 0;
+        border-left: 5px solid #27ae60;
     }
     .step-box {
-        background-color: #e8f4f8;
+        background-color: #eafaf1;
         padding: 15px;
-        border-left: 4px solid #3498db;
+        border-left: 4px solid #27ae60;
         margin: 10px 0;
+    }
+    [data-testid="stMarkdownContainer"] h2 {
+        color: #27ae60;
+        border-bottom: 3px solid #27ae60;
+        padding-bottom: 10px;
+    }
+    [data-testid="stMarkdownContainer"] h3 {
+        color: #229954;
     }
 </style>
 """, unsafe_allow_html=True)
