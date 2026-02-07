@@ -67,6 +67,7 @@ class Recipe:
     name: str
     meal_type: MealType
     ingredients: list[tuple[str, float, str]]
+    kcal: int
     tags: set[str]
 
 
@@ -194,6 +195,7 @@ RECIPE_LIBRARY: list[Recipe] = [
         "breakfast",
         [("Skyr",300,"g"),("Banane",1,"piece"),("Beeren TK",150,"g"),
          ("Nüsse",25,"g"),("Honig",15,"g"),("Leinsamen",10,"g")],
+        620,
         {"high_protein","fruit","healthy_fats"},
     ),
     Recipe(
@@ -201,6 +203,7 @@ RECIPE_LIBRARY: list[Recipe] = [
         "breakfast",
         [("Brötchen",2,"piece"),("Avocado",1,"piece"),("Ei",2,"piece"),
          ("Schnittkäse",40,"g"),("Tomate",1,"piece")],
+        800,
         {"high_protein","healthy_fats"},
     ),
     Recipe(
@@ -208,6 +211,7 @@ RECIPE_LIBRARY: list[Recipe] = [
         "breakfast",
         [("Haferflocken",70,"g"),("Milch",250,"ml"),
          ("Erdnussbutter",20,"g"),("Banane",1,"piece"),("Zimt",1,"g")],
+        620,
         {"wholegrain","healthy_fats"},
     ),
     Recipe(
@@ -215,6 +219,7 @@ RECIPE_LIBRARY: list[Recipe] = [
         "breakfast",
         [("Haferflocken",70,"g"),("Skyr",250,"g"),
          ("Beeren TK",150,"g"),("Leinsamen",10,"g"),("Honig",10,"g")],
+        590,
         {"wholegrain","high_protein","mealprep"},
     ),
     Recipe(
@@ -223,105 +228,204 @@ RECIPE_LIBRARY: list[Recipe] = [
         [("Tofu",150,"g"),("Zwiebel",0.5,"piece"),
          ("Gemüse MIX_B",120,"g"),("Olivenöl",10,"g"),
          ("Brötchen",1,"piece")],
+        480,
         {"high_protein","veg"},
     ),
 
     # ---------- SNACKS ----------
     Recipe("Proteinshake","snack",
         [("Proteinpulver",30,"g"),("Sojamilch",300,"ml"),("Beeren TK",150,"g")],
+        320,
         {"high_protein"}),
 
     Recipe("Apfel + Mandelmus","snack",
         [("Apfel",1,"piece"),("Mandelmus",20,"g")],
+        220,
         {"fruit","healthy_fats"}),
 
     Recipe("Skyr + Honig","snack",
         [("Skyr",250,"g"),("Honig",10,"g")],
+        190,
         {"high_protein"}),
 
     Recipe("Nüsse + Banane","snack",
         [("Nüsse",25,"g"),("Banane",1,"piece")],
+        250,
         {"healthy_fats","fruit"}),
 
     Recipe("Gemüsesticks + Hummus","snack",
         [("Gemüse MIX_A",250,"g"),("Hummus",80,"g")],
+        300,
         {"legumes","fiber"}),
 
     Recipe("Edamame + Sojasauce + Sesam","snack",
         [("Edamame TK",250,"g"),("Soja Sauce",15,"g"),("Sesam",10,"g")],
+        370,
         {"high_protein","fiber"}),
 
-    # ---------- LUNCH / DINNER ----------
-    Recipe("Reis-Tofu-Gemüse-Pfanne","lunch",
+    # ---------- LUNCH (kalt/quick) ----------
+    Recipe("Vollkornbrot mit Hummus & Gemüse","lunch",
+        [("Vollkornbrot",2,"piece"),("Hummus",80,"g"),
+         ("Gemüse MIX_A",200,"g")],
+        420,
+        {"cold","quick","fiber"}),
+
+    Recipe("Vollkornbrot mit Kräuterquark & Gurke","lunch",
+        [("Vollkornbrot",2,"piece"),("Kräuterquark",120,"g"),
+         ("Gurke",0.5,"piece"),("Tomate",1,"piece")],
+        380,
+        {"cold","quick","high_protein"}),
+
+    Recipe("Kichererbsen-Wrap (kalt)","lunch",
+        [("Vollkorn-Wrap",2,"piece"),("Kichererbsen",200,"g"),
+         ("Avocado",0.5,"piece"),("Gurke",0.5,"piece"),
+         ("Tomate",1,"piece"),("Skyr",80,"g")],
+        780,
+        {"cold","legumes","high_protein","quick"}),
+
+    Recipe("Wrap mit Hummus & Feta","lunch",
+        [("Vollkorn-Wrap",2,"piece"),("Hummus",60,"g"),
+         ("Feta",60,"g"),("Tomate",1,"piece"),
+         ("Gurke",0.5,"piece")],
+        650,
+        {"cold","quick","healthy_fats"}),
+
+    Recipe("Mediterraner Salat + Brot","lunch",
+        [("Vollkornbrot",2,"piece"),("Feta",60,"g"),
+         ("Gurke",1,"piece"),("Tomate",2,"piece"),
+         ("Olivenöl",10,"g")],
+        600,
+        {"cold","quick","healthy_fats"}),
+
+    # ---------- DINNER (hot) ----------
+    Recipe("Reis-Tofu-Gemüse-Pfanne","dinner",
         [("Reis (trocken)",90,"g"),("Tofu",200,"g"),
          ("Gemüse MIX_A",300,"g"),("Soja Sauce",20,"g"),
          ("Kimchi",80,"g"),("Olivenöl",10,"g")],
-        {"high_protein","veg","fermented"}),
+        800,
+        {"hot","high_protein","veg","fermented"}),
 
     Recipe("Quinoa-Tofu-Bowl","dinner",
         [("Quinoa (trocken)",90,"g"),("Tofu",200,"g"),
          ("Gemüse MIX_B",300,"g"),("Soja Sauce",20,"g"),
          ("Kimchi",80,"g"),("Sesam",10,"g")],
-        {"high_protein","wholegrain","veg","fermented"}),
+        780,
+        {"hot","high_protein","wholegrain","veg","fermented"}),
 
-    Recipe("Linsennudeln Tomate-Spinat","lunch",
+    Recipe("Linsennudeln Tomate-Spinat","dinner",
         [("Linsennudeln",120,"g"),("Tomaten (Dose)",300,"g"),
          ("Spinat (TK)",200,"g"),("Schnittkäse",30,"g"),
          ("Olivenöl",10,"g"),("Zwiebel",1,"piece"),("Knoblauch",1,"piece")],
-        {"legumes","high_protein","veg"}),
-
-    Recipe("Kichererbsen-Wrap","lunch",
-        [("Vollkorn-Wrap",2,"piece"),("Kichererbsen",200,"g"),
-         ("Avocado",0.5,"piece"),("Gurke",0.5,"piece"),
-         ("Tomate",1,"piece"),("Skyr",80,"g")],
-        {"legumes","high_protein","veg"}),
+        740,
+        {"hot","legumes","high_protein","veg"}),
 
     Recipe("Kichererbsen-Curry + Reis","dinner",
         [("Reis (trocken)",90,"g"),("Kichererbsen",240,"g"),
          ("Tomaten (Dose)",200,"g"),("Spinat (TK)",150,"g"),
          ("Kokosmilch",200,"ml"),("Currypaste",20,"g")],
-        {"legumes","veg","high_protein"}),
+        1050,
+        {"hot","legumes","veg","high_protein"}),
 
-    Recipe("Kimchi-Fried-Rice","lunch",
+    Recipe("Kimchi-Fried-Rice","dinner",
         [("Reis (trocken)",90,"g"),("Ei",2,"piece"),
          ("Gemüse MIX_C",300,"g"),("Kimchi",120,"g"),
          ("Soja Sauce",15,"g"),("Olivenöl",10,"g")],
-        {"high_protein","veg","fermented"}),
+        700,
+        {"hot","high_protein","veg","fermented"}),
 
-    Recipe("Mediterrane Quinoa-Bowl","lunch",
+    Recipe("Mediterrane Quinoa-Bowl","dinner",
         [("Quinoa (trocken)",90,"g"),("Feta",80,"g"),
          ("Gurke",1,"piece"),("Tomate",2,"piece"),
          ("Olivenöl",10,"g"),("Zitrone",0.5,"piece")],
-        {"wholegrain","veg","high_protein","healthy_fats"}),
+        690,
+        {"hot","wholegrain","veg","high_protein","healthy_fats"}),
 
     Recipe("Bohnen-Mais-Tacos","dinner",
         [("Vollkorn-Wrap",2,"piece"),("Kidneybohnen",220,"g"),
          ("Mais",150,"g"),("Salsa",100,"g"),
          ("Skyr",120,"g"),("Avocado",0.5,"piece")],
-        {"legumes","veg","high_protein"}),
+        900,
+        {"hot","legumes","veg","high_protein"}),
+
+    # ---------- SOUPS / STEWS (hot) ----------
+    Recipe("Linsensuppe mit Gemüse","dinner",
+        [("Linsen (trocken)",100,"g"),("Gemüse MIX_B",300,"g"),
+         ("Kartoffel",200,"g"),("Zwiebel",1,"piece"),
+         ("Olivenöl",10,"g"),("Gemüsebrühe",500,"ml")],
+        680,
+        {"hot","soup_stew","fiber","legumes"}),
+
+    Recipe("Kartoffel-Lauch-Suppe","dinner",
+        [("Kartoffel",300,"g"),("Lauch",150,"g"),
+         ("Milch",150,"ml"),("Olivenöl",10,"g"),
+         ("Gemüsebrühe",500,"ml")],
+        480,
+        {"hot","soup_stew","quick"}),
+
+    Recipe("Chili sin Carne","dinner",
+        [("Kidneybohnen",240,"g"),("Mais",150,"g"),
+         ("Tomaten (Dose)",300,"g"),("Paprika",1,"piece"),
+         ("Zwiebel",1,"piece"),("Olivenöl",10,"g")],
+        700,
+        {"hot","soup_stew","legumes"}),
+
+    Recipe("Gemüse-Kichererbsen-Eintopf","dinner",
+        [("Kichererbsen",200,"g"),("Gemüse MIX_A",300,"g"),
+         ("Kartoffel",200,"g"),("Olivenöl",10,"g"),
+         ("Gemüsebrühe",500,"ml")],
+        660,
+        {"hot","soup_stew","legumes","fiber"}),
 ]
 
 
+def choose_snacks(snacks: list[Recipe], target_kcal: int, base_kcal: int) -> tuple[Recipe, Recipe]:
+    """Pick two snacks to get close to the daily calorie target."""
+    best_pair = None
+    best_diff = None
+    for s1 in snacks:
+        for s2 in snacks:
+            total = base_kcal + s1.kcal + s2.kcal
+            diff = abs(target_kcal - total)
+            if best_diff is None or diff < best_diff:
+                best_diff = diff
+                best_pair = (s1, s2)
+    return best_pair if best_pair else (random.choice(snacks), random.choice(snacks))
+
+
 def generate_weekly_plan(week_number: int) -> dict[str, dict[str, Recipe]]:
-    """Generate a deterministic weekly meal plan from library, rotating week-to-week."""
+    """Generate a deterministic weekly meal plan with cold lunches and hot dinners."""
     days = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
 
-    # Filter recipes by type
     breakfast_recipes = [r for r in RECIPE_LIBRARY if r.meal_type == "breakfast"]
     snack_recipes = [r for r in RECIPE_LIBRARY if r.meal_type == "snack"]
-    lunch_recipes = [r for r in RECIPE_LIBRARY if r.meal_type == "lunch"]
-    dinner_recipes = [r for r in RECIPE_LIBRARY if r.meal_type == "dinner"]
+    lunch_recipes = [r for r in RECIPE_LIBRARY if r.meal_type == "lunch" and "cold" in r.tags]
+    dinner_hot = [r for r in RECIPE_LIBRARY if r.meal_type == "dinner" and "hot" in r.tags]
+    dinner_soups = [r for r in dinner_hot if "soup_stew" in r.tags]
+    dinner_other = [r for r in dinner_hot if "soup_stew" not in r.tags]
 
-    plan = {}
-    random.seed(week_number)  # Deterministic rotation per week
+    plan: dict[str, dict[str, Recipe]] = {}
+    random.seed(week_number)
+
+    soup_days = set(random.sample(days, k=2)) if len(dinner_soups) >= 2 else set()
 
     for day in days:
+        breakfast = random.choice(breakfast_recipes)
+        lunch = random.choice(lunch_recipes) if lunch_recipes else random.choice(breakfast_recipes)
+
+        if day in soup_days and dinner_soups:
+            dinner = random.choice(dinner_soups)
+        else:
+            dinner = random.choice(dinner_other or dinner_soups)
+
+        base_kcal = breakfast.kcal + lunch.kcal + dinner.kcal
+        snack1, snack2 = choose_snacks(snack_recipes, BASE, base_kcal)
+
         plan[day] = {
-            "Frühstück": random.choice(breakfast_recipes),
-            "Snack 1": random.choice(snack_recipes),
-            "Mittag": random.choice(lunch_recipes),
-            "Snack 2": random.choice(snack_recipes),
-            "Abend": random.choice(dinner_recipes),
+            "Frühstück": breakfast,
+            "Snack 1": snack1,
+            "Mittag": lunch,
+            "Snack 2": snack2,
+            "Abend": dinner,
         }
 
     return plan
@@ -418,6 +522,8 @@ with col2:
     st.info(
         "✅ Alle Mengen werden automatisch nach deinem Aktivitätsniveau berechnet\n\n"
         "✅ Einkaufsliste nutzt das höchste Aktivitätsniveau der Woche\n\n"
+        "✅ Pro Tag nur ein warmes Gericht (Abend)\n\n"
+        "✅ Mindestens 2 Suppen/Eintöpfe pro Woche\n\n"
         "✅ Rezepte sind auf ~15 Minuten ausgelegt"
     )
 
@@ -445,8 +551,10 @@ max_factor = max(scale_factor(level) for level in activity_levels.values())
 
 # Plan-Tabelle generieren (mit pro-Tag Skalierung)
 rows = []
+daily_kcal = {}
 for day, meals in plan.items():
     day_factor = scale_factor(activity_levels[day])
+    day_total = 0
     for meal_name in MEAL_ORDER:
         recipe = meals[meal_name]
         parts = []
@@ -458,12 +566,16 @@ for day, meals in plan.items():
                 display_spoon = spoon_display(norm_ing, expanded_qty, expanded_unit)
                 display = display_piece or display_spoon or fmt(expanded_qty, expanded_unit)
                 parts.append(f"{norm_ing}: {display}")
+        kcal_scaled = int(round(recipe.kcal * day_factor))
+        day_total += kcal_scaled
         rows.append({
             "Tag": day,
             "Mahlzeit": meal_name,
             "Gericht": recipe.name,
+            "Kalorien (geschätzt)": kcal_scaled,
             "Portionen/Zutaten": " | ".join(parts),
         })
+    daily_kcal[day] = day_total
 
 plan_df = pd.DataFrame(rows)
 
@@ -471,6 +583,29 @@ st.markdown("---")
 st.markdown("## 📋 Wochenplan")
 st.markdown(f"**Woche {week_num}** - Dein persönlicher Ernährungsplan für die Woche")
 st.dataframe(plan_df, use_container_width=True, hide_index=True)
+
+# Tages-Kalorien-Check
+summary_rows = []
+for day in days:
+    target = CAL_TARGETS[activity_levels[day]]
+    planned = daily_kcal.get(day, 0)
+    diff = planned - target
+    diff_pct = (diff / target) * 100 if target else 0
+    summary_rows.append({
+        "Tag": day,
+        "Ziel (kcal)": target,
+        "Geplant (kcal)": planned,
+        "Abweichung": f"{diff:+.0f} kcal ({diff_pct:+.0f}%)",
+    })
+
+summary_df = pd.DataFrame(summary_rows)
+st.markdown("### 🔎 Kalorien-Check pro Tag")
+st.dataframe(summary_df, use_container_width=True, hide_index=True)
+
+if any(abs((daily_kcal[d] - CAL_TARGETS[activity_levels[d]]) / CAL_TARGETS[activity_levels[d]]) > 0.1 for d in days):
+    st.warning("Einige Tage weichen um mehr als ±10% vom Kalorienziel ab. Du kannst die Woche neu generieren, um die Schätzung zu verbessern.")
+else:
+    st.success("Alle Tage liegen innerhalb von ±10% des Kalorienziels.")
 
 
 # Einkaufsliste aggregieren (mit max Faktor)
