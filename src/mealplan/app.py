@@ -7,7 +7,7 @@ import random
 from datetime import datetime, timedelta
 import uuid
 
-st.set_page_config(page_title="Vegetarischer Wochen-Ernährungsplan", layout="wide")
+st.set_page_config(page_title="Vegetarischer Wochen-Ernährungsplan für Pauli", layout="wide")
 
 # Custom styling for better UX - Green Theme
 st.markdown("""
